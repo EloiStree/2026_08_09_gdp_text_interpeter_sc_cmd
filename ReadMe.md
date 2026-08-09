@@ -16,6 +16,7 @@ Unspecified texts are consider as a command line.
 
 `In ...| rest`is a CMD reserved format, delaying the rest for later relative to local time.
 
+`S2W` and integer: by default an integer in a short cut format  means send to all UDP and WS targets registered.
 
 
 
