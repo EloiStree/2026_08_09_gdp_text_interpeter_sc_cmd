@@ -18,5 +18,7 @@ Unspecified texts are consider as a command line.
 
 `S2W` and integer: by default an integer in a short cut format  means send to all UDP and WS targets registered.
 
-
+`(...)x3`in shortcut means to duplicate 3 time the following before interpreting
+`[[ ]]` The text between is to put in the clipboard
+`sc: 1000> [cmd: ]` The following is an command line in a shortcut text
 
