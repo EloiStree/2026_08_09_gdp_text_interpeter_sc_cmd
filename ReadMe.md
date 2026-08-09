@@ -1,5 +1,5 @@
 ```
-git submodule add https://github.com/EloiStree/2026_08_09_gdp_text_interpeter_sc_cmd
+git submodule add https://github.com/EloiStree/2026_08_09_gdp_text_interpeter_sc_cmd addons/2026_08_09_gdp_text_interpeter_sc_cmd
 ```
 
 They are two type of text:
