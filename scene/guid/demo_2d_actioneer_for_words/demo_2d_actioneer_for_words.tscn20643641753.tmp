@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://o5ujmnyuqq5y"]
+
+[ext_resource type="Script" uid="uid://dwil6s4natvf5" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/scmd_ui_submit_line_edit.gd" id="1_441cj"]
+[ext_resource type="Script" uid="uid://b2ny4vub2sgib" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_actioneer_for_words/script/scmd_shortcut_word_auctioneer.gd" id="1_juxmn"]
+[ext_resource type="Script" uid="uid://bxhiuo107ix6a" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/script/scmd_ui_text_append_log.gd" id="2_juxmn"]
+[ext_resource type="Script" uid="uid://ohxds2q6x3n2" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_actioneer_for_words/script/word_interpreter/scmd_sc_interpreter_open_url_on_keyword.gd" id="2_l5pwm"]
+[ext_resource type="Script" uid="uid://cvg8t0aqgk2ri" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_actioneer_for_words/script/word_interpreter/scmd_sc_interpreter_integer_action.gd" id="3_u5w3e"]
+[ext_resource type="Script" uid="uid://bmjoj6331yk6a" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_actioneer_for_words/script/word_interpreter/scmd_sc_interpreter_wait_for_n_milliseconds.gd" id="4_kk1yl"]
+[ext_resource type="Script" uid="uid://0ebuvi8k7fbd" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_actioneer_for_words/script/word_interpreter/midi/scmd_sc_interpeter_midi.gd" id="5_e0g04"]
+[ext_resource type="Script" uid="uid://bfvhdcjt1g5ye" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_actioneer_for_words/script/word_interpreter/scmd_sc_interpreter_clipboard_storage.gd" id="5_h41ul"]
+[ext_resource type="Script" uid="uid://bnh4ggp3el6ai" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_actioneer_for_words/script/word_interpreter/midi/scmd_sc_default_midi_output.gd" id="6_2dvb1"]
+[ext_resource type="Script" uid="uid://bcgdlgdpkc1wp" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_actioneer_for_words/script/word_interpreter/scmd_sc_default_clipboard_storage.gd" id="6_e0g04"]
+
+[node name="Demo2dInterpreterScCmd" type="Control" unique_id=355699793]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SCMDShortcutWordAuctioneer" type="Node" parent="." unique_id=2048918711 node_paths=PackedStringArray("_interpreter_bidders")]
+script = ExtResource("1_juxmn")
+_interpreter_bidders = [NodePath("Interpreters/Wait 1000>"), NodePath("Interpreters/Integer Action"), NodePath("Interpreters/Save And Load Clipboard"), NodePath("Interpreters/Midi UDP Out"), NodePath("Interpreters/Open Url")]
+metadata/_custom_type_script = "uid://b2ny4vub2sgib"
+
+[node name="Interpreters" type="Node" parent="SCMDShortcutWordAuctioneer" unique_id=289497450]
+
+[node name="Open Url" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=371847025]
+script = ExtResource("2_l5pwm")
+
+[node name="Integer Action" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=238685304]
+script = ExtResource("3_u5w3e")
+metadata/_custom_type_script = "uid://cvg8t0aqgk2ri"
+
+[node name="Wait 1000>" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=1545822692]
+script = ExtResource("4_kk1yl")
+metadata/_custom_type_script = "uid://bmjoj6331yk6a"
+
+[node name="Midi UDP Out" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=784872356]
+script = ExtResource("5_e0g04")
+metadata/_custom_type_script = "uid://0ebuvi8k7fbd"
+
+[node name="Midi Udp Localhost" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters/Midi UDP Out" unique_id=915070410]
+script = ExtResource("6_2dvb1")
+metadata/_custom_type_script = "uid://bnh4ggp3el6ai"
+
+[node name="Save And Load Clipboard" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=621184770]
+script = ExtResource("5_h41ul")
+metadata/_custom_type_script = "uid://bfvhdcjt1g5ye"
+
+[node name="Clipboard Storage" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters/Save And Load Clipboard" unique_id=603213341]
+script = ExtResource("6_e0g04")
+
+[node name="Panel" type="Panel" parent="." unique_id=1985234520]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SCmdUiSubmitLineEdit" type="Node" parent="Panel" unique_id=75939996 node_paths=PackedStringArray("line_edit", "submit_button")]
+script = ExtResource("1_441cj")
+line_edit = NodePath("../LineEdit")
+submit_button = NodePath("../Button")
+metadata/_custom_type_script = "uid://dwil6s4natvf5"
+
+[node name="LineEdit" type="LineEdit" parent="Panel" unique_id=2118108226]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.8671875
+anchor_bottom = 0.15049317
+offset_right = -6.0
+offset_bottom = -0.10500336
+text = "🎹c1n10v127"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="Panel" unique_id=252065826]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87395835
+anchor_right = 0.990625
+anchor_bottom = 0.11816406
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Submit"
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel2" type="Panel" parent="." unique_id=672357452]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.16308594
+anchor_right = 0.8598958
+anchor_bottom = 0.41796875
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label Debug Log" type="Label" parent="Panel2" unique_id=537296192]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -11.0
+offset_bottom = -9.0
+
+[node name="SCmdUiTextAppendLog" type="Node" parent="Panel2/Label Debug Log" unique_id=2005044461 node_paths=PackedStringArray("_labels")]
+script = ExtResource("2_juxmn")
+_labels = [NodePath("..")]
+metadata/_custom_type_script = "uid://bxhiuo107ix6a"
+
+[node name="Label Integer Found" type="Label" parent="Panel2" unique_id=666662482]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0996678
+anchor_right = 0.2004731
+anchor_bottom = 1.5946844
+offset_right = -11.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[connection signal="on_integer_found_as_string" from="SCMDShortcutWordAuctioneer/Interpreters/Integer Action" to="Panel2/Label Integer Found" method="set_text"]
+[connection signal="on_midi_channel_note_velocity_found" from="SCMDShortcutWordAuctioneer/Interpreters/Midi UDP Out" to="SCMDShortcutWordAuctioneer/Interpreters/Midi UDP Out/Midi Udp Localhost" method="send_channel_note_velocity_to_localhost"]
+[connection signal="on_midi_controller_velocity_found" from="SCMDShortcutWordAuctioneer/Interpreters/Midi UDP Out" to="SCMDShortcutWordAuctioneer/Interpreters/Midi UDP Out/Midi Udp Localhost" method="send_controller_velocity_to_localhost"]
+[connection signal="on_midi_note_velocity_found" from="SCMDShortcutWordAuctioneer/Interpreters/Midi UDP Out" to="SCMDShortcutWordAuctioneer/Interpreters/Midi UDP Out/Midi Udp Localhost" method="send_channel_note_velocity_to_localhost"]
+[connection signal="on_submit_button_pressed" from="Panel/SCmdUiSubmitLineEdit" to="SCMDShortcutWordAuctioneer" method="push_in_shortcut_text"]

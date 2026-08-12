@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ckwkstr8vsa2p"]
 
-[ext_resource type="Script" uid="uid://cku7rckwwwh4i" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/script/scmd_text_delayer_.gd" id="1_g4rcj"]
-[ext_resource type="Script" uid="uid://cw5bctq0p366d" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/script/scmd_delay_text_with_ui_range_of_time.gd" id="2_2pmp3"]
+[ext_resource type="PackedScene" uid="uid://dvar7xg10roh1" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_delay_text_with_os_time/prefab/prefab_panel_relay_text.tscn" id="1_g4rcj"]
 
 [node name="Demo2dDelayTextWithOsTime" type="Control" unique_id=223083321]
 layout_mode = 3
@@ -11,83 +10,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="." unique_id=418393749]
-layout_mode = 0
-offset_right = 887.0
-offset_bottom = 532.0
-
-[node name="SCmdTextDelayer" type="Node" parent="Panel" unique_id=2030611841]
-script = ExtResource("1_g4rcj")
-metadata/_custom_type_script = "uid://cku7rckwwwh4i"
-
-[node name="SCmdDelayTextWithUiRangeOfTime" type="Node" parent="Panel" unique_id=1387924945 node_paths=PackedStringArray("text_editor_for_text_input", "line_editor_milliseconds", "line_editor_seconds", "line_editor_minutes", "submit_button", "text_editor_for_log")]
-script = ExtResource("2_2pmp3")
-text_editor_for_text_input = NodePath("../TextEditInput")
-line_editor_milliseconds = NodePath("../HBoxContainer/LineEdit Milliseconds")
-line_editor_seconds = NodePath("../HBoxContainer/LineEdit Seconds")
-line_editor_minutes = NodePath("../HBoxContainer/LineEdit Minutes")
-submit_button = NodePath("../HBoxContainer/Button Submit Text To Delay")
-text_editor_for_log = NodePath("../TextEditLog")
-metadata/_custom_type_script = "uid://cw5bctq0p366d"
-
-[node name="TextEditInput" type="TextEdit" parent="Panel" unique_id=1541174581]
+[node name="Panel Relay Text" parent="." unique_id=1048838837 instance=ExtResource("1_g4rcj")]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.99100006
-anchor_bottom = 0.41400003
-offset_right = -0.017028809
-offset_bottom = -0.24801636
-
-[node name="TextEditLog" type="TextEdit" parent="Panel" unique_id=1038232870]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.6184211
-anchor_right = 0.99100006
-anchor_bottom = 0.98166925
-offset_right = -0.017028809
-offset_bottom = -0.24801636
+anchor_right = 0.99378127
+anchor_bottom = 0.4580556
+offset_right = -0.040039063
+offset_bottom = 0.19998169
 metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=1102650696]
+[node name="SCmdDelayTextWithUiRangeOfTime" parent="Panel Relay Text" index="1" unique_id=735611462 node_paths=PackedStringArray("text_editor_for_log")]
+text_editor_for_log = NodePath("../../Panel Debug Log/TextEditLog")
+
+[node name="Panel Debug Log" type="Panel" parent="." unique_id=1836871673]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.006
-anchor_top = 0.423
-anchor_right = 0.99200004
-anchor_bottom = 0.568
-offset_left = -0.32200003
-offset_top = -0.036010742
-offset_right = 0.095947266
-offset_bottom = -0.17599487
+anchor_top = 0.46800002
+anchor_right = 0.9899688
+anchor_bottom = 0.9710001
+offset_top = 0.039978027
+offset_right = -0.16003418
+offset_bottom = -0.12005615
+metadata/_edit_use_anchors_ = true
 
-[node name="Label Milliseconds" type="Label" parent="Panel/HBoxContainer" unique_id=624229447]
-layout_mode = 2
-text = "milliseconds"
+[node name="TextEditLog" type="TextEdit" parent="Panel Debug Log" unique_id=1038232870]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="LineEdit Milliseconds" type="LineEdit" parent="Panel/HBoxContainer" unique_id=1691593865]
-layout_mode = 2
-text = "0"
-
-[node name="Label Seconds" type="Label" parent="Panel/HBoxContainer" unique_id=1229891665]
-layout_mode = 2
-text = "Seconds"
-
-[node name="LineEdit Seconds" type="LineEdit" parent="Panel/HBoxContainer" unique_id=508309344]
-layout_mode = 2
-text = "0"
-
-[node name="Label Minute" type="Label" parent="Panel/HBoxContainer" unique_id=1215998169]
-layout_mode = 2
-text = "Minute"
-
-[node name="LineEdit Minutes" type="LineEdit" parent="Panel/HBoxContainer" unique_id=1954458723]
-layout_mode = 2
-text = "0"
-
-[node name="Button Submit Text To Delay" type="Button" parent="Panel/HBoxContainer" unique_id=1113304283]
-layout_mode = 2
-text = "Relay"
-
-[connection signal="on_text_ready_to_be_relayed" from="Panel/SCmdTextDelayer" to="Panel/SCmdDelayTextWithUiRangeOfTime" method="log_received_text"]
-[connection signal="on_text_ready_to_be_relayed_with_time" from="Panel/SCmdTextDelayer" to="Panel/SCmdDelayTextWithUiRangeOfTime" method="log_received_text_with_time"]
-[connection signal="on_request_to_delay_text" from="Panel/SCmdDelayTextWithUiRangeOfTime" to="Panel/SCmdTextDelayer" method="append_text_to_be_delayed_of_milliseconds"]
+[editable path="Panel Relay Text"]

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://hqg2y8bhmrw5"]
+
+[ext_resource type="Script" uid="uid://dwil6s4natvf5" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/scmd_ui_submit_line_edit.gd" id="1_xdych"]
+[ext_resource type="Script" uid="uid://briys5vafrqt" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_scmd_static_singleton/scmd_push_shortcut_to_static_singleton.gd" id="2_u478i"]
+[ext_resource type="Script" uid="uid://dcshwh1n4qspt" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_scmd_static_singleton/scmd_listen_to_push_shortcut_to_static_singleton.gd" id="3_b6y5o"]
+
+[node name="Demo2dScmdStaticSingleton" type="Control" unique_id=331065984]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=844656931]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label Send" type="Label" parent="VBoxContainer" unique_id=1431335189]
+layout_mode = 2
+text = "Push Shortcut To Static"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=1617812818]
+layout_mode = 2
+text = "1032 100> 2032"
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=992350321]
+layout_mode = 2
+text = "Push to Static"
+
+[node name="SCmdUiSubmitLineEdit" type="Node" parent="VBoxContainer/Button" unique_id=1480283038 node_paths=PackedStringArray("line_edit", "submit_button")]
+script = ExtResource("1_xdych")
+line_edit = NodePath("../../LineEdit")
+submit_button = NodePath("..")
+metadata/_custom_type_script = "uid://dwil6s4natvf5"
+
+[node name="SCmdPushShortcutToStaticSingleton" type="Node" parent="VBoxContainer/Button" unique_id=271757503]
+script = ExtResource("2_u478i")
+metadata/_custom_type_script = "uid://briys5vafrqt"
+
+[node name="Label Received" type="Label" parent="VBoxContainer" unique_id=205067482]
+layout_mode = 2
+text = "Received From Static"
+
+[node name="LineEdit2" type="LineEdit" parent="VBoxContainer" unique_id=1122250442]
+layout_mode = 2
+
+[node name="SCmdListenToPushShortcutToStaticSingleton" type="Node" parent="VBoxContainer/LineEdit2" unique_id=1352713857]
+script = ExtResource("3_b6y5o")
+metadata/_custom_type_script = "uid://dcshwh1n4qspt"
+
+[connection signal="on_submit_button_pressed" from="VBoxContainer/Button/SCmdUiSubmitLineEdit" to="VBoxContainer/Button/SCmdPushShortcutToStaticSingleton" method="push_shortcut_to_static_singleton"]
+[connection signal="on_shortcut_to_interpret" from="VBoxContainer/LineEdit2/SCmdListenToPushShortcutToStaticSingleton" to="VBoxContainer/LineEdit2" method="set_text"]

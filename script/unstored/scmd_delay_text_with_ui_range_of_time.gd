@@ -1,4 +1,4 @@
-class_name SCmdDelayTextWithUiRangeOfTime
+class_name SCmdUiDelayTextWithLineEditor
 extends Node
 
 

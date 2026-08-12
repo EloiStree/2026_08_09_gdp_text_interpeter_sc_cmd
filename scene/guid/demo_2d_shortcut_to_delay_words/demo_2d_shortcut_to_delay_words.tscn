@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b4h0polmr8ccn"]
+
+[ext_resource type="Script" uid="uid://upwr546drop3" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/scmd_ui_submit_text_edit.gd" id="1_gf2jk"]
+[ext_resource type="Script" uid="uid://dnh35s7ldvx7" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_shortcut_to_delay_words/scmd_duplicate_brackets_in_text.gd" id="2_jq342"]
+[ext_resource type="Script" uid="uid://bvf5c2pm8wf0y" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_shortcut_to_delay_words/scmd_shortcut_words_delayer.gd" id="3_u4l41"]
+[ext_resource type="Script" uid="uid://cku7rckwwwh4i" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/unstored/scmd_text_delayer_.gd" id="4_7qsii"]
+
+[node name="Demo2dShortcutToDelayWords" type="Control" unique_id=355182473]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2117101108]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.9990001
+offset_right = -5.0
+offset_bottom = 0.023925781
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1920684594]
+layout_mode = 2
+text = "Shortcut text to send"
+
+[node name="TextEdit Short Cut" type="TextEdit" parent="VBoxContainer" unique_id=1485453685]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = " ( 1032 1000> 2032 500> ) x10 500> 4056
+
+( ( a b c )x10 )x2
+( you ( are )x2 )x3
+( ( ( a b c )x10 )x2 )x3
+"
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1777793720]
+layout_mode = 2
+text = "Submit"
+
+[node name="SCmdUiSubmitTextEdit" type="Node" parent="VBoxContainer/Button" unique_id=1651383033 node_paths=PackedStringArray("text_edit", "submit_button")]
+script = ExtResource("1_gf2jk")
+text_edit = NodePath("../../TextEdit Short Cut")
+submit_button = NodePath("..")
+metadata/_custom_type_script = "uid://upwr546drop3"
+
+[node name="Code" type="Node" parent="VBoxContainer" unique_id=680716173]
+
+[node name="SCmdDuplicateBracketsInText" type="Node" parent="VBoxContainer/Code" unique_id=274278934]
+script = ExtResource("2_jq342")
+metadata/_custom_type_script = "uid://dnh35s7ldvx7"
+
+[node name="SCmdShortcutWordsDelayer" type="Node" parent="VBoxContainer/Code" unique_id=1969649020 node_paths=PackedStringArray("_text_delayer")]
+script = ExtResource("3_u4l41")
+_text_delayer = NodePath("SCmdTextDelayer")
+metadata/_custom_type_script = "uid://bvf5c2pm8wf0y"
+
+[node name="SCmdTextDelayer" type="Node" parent="VBoxContainer/Code/SCmdShortcutWordsDelayer" unique_id=173970615]
+script = ExtResource("4_7qsii")
+metadata/_custom_type_script = "uid://cku7rckwwwh4i"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer" unique_id=1384230105]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="TextEdit2" type="TextEdit" parent="VBoxContainer" unique_id=310672448]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[connection signal="on_submit_button_pressed" from="VBoxContainer/Button/SCmdUiSubmitTextEdit" to="VBoxContainer/Code/SCmdDuplicateBracketsInText" method="parse_text_then_emit"]
+[connection signal="on_parsed_text_emitted" from="VBoxContainer/Code/SCmdDuplicateBracketsInText" to="VBoxContainer/Code/SCmdShortcutWordsDelayer" method="push_in_text_to_split_and_delay"]
+[connection signal="on_parsed_text_emitted" from="VBoxContainer/Code/SCmdDuplicateBracketsInText" to="VBoxContainer/TextEdit" method="set_text"]
+[connection signal="on_word_ready_to_be_interpreted" from="VBoxContainer/Code/SCmdShortcutWordsDelayer" to="VBoxContainer/TextEdit2" method="set_text"]

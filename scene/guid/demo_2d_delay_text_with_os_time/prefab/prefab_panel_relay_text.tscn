@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dvar7xg10roh1"]
+
+[ext_resource type="Script" uid="uid://cku7rckwwwh4i" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/unstored/scmd_text_delayer_.gd" id="1_xq632"]
+[ext_resource type="Script" uid="uid://cw5bctq0p366d" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/unstored/scmd_delay_text_with_ui_range_of_time.gd" id="2_cq1cs"]
+
+[node name="Panel Relay Text" type="Panel" unique_id=1048838837]
+offset_right = 887.0
+offset_bottom = 532.0
+
+[node name="SCmdTextDelayer" type="Node" parent="." unique_id=151427815]
+script = ExtResource("1_xq632")
+metadata/_custom_type_script = "uid://cku7rckwwwh4i"
+
+[node name="SCmdDelayTextWithUiRangeOfTime" type="Node" parent="." unique_id=735611462 node_paths=PackedStringArray("text_editor_for_text_input", "line_editor_milliseconds", "line_editor_seconds", "line_editor_minutes", "submit_button")]
+script = ExtResource("2_cq1cs")
+text_editor_for_text_input = NodePath("../TextEditInput")
+line_editor_milliseconds = NodePath("../HBoxContainer/LineEdit Milliseconds")
+line_editor_seconds = NodePath("../HBoxContainer/LineEdit Seconds")
+line_editor_minutes = NodePath("../HBoxContainer/LineEdit Minutes")
+submit_button = NodePath("../HBoxContainer/Button Submit Text To Delay")
+metadata/_custom_type_script = "uid://cw5bctq0p366d"
+
+[node name="TextEditInput" type="TextEdit" parent="." unique_id=1928729943]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99100006
+anchor_bottom = 0.91700006
+offset_right = -0.017028809
+offset_bottom = 0.15597534
+text = "cmd:udp:set:main:192.168.172.33:7074
+cmd:udp:t:main:Hello World
+cmd:udp:b:255 50 50 64 86 25
+cmd:udp:t:192.168.172.33:Hello World
+In 2000:cmd:tbio:i:main:1032
+In 4000:cmd:tbio:ii:main:2 1038
+In 6000:cmd:tbio:iid:main:2 1038 500
+In 8000:cmd:tbio:iidb:main:2 1038 500 2 1038 1500
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=578682970]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006
+anchor_top = 0.9023233
+anchor_right = 0.99200004
+anchor_bottom = 0.9834136
+offset_left = -0.32200003
+offset_top = -0.036010742
+offset_right = 0.095947266
+offset_bottom = -0.17599487
+metadata/_edit_use_anchors_ = true
+
+[node name="Label Milliseconds" type="Label" parent="HBoxContainer" unique_id=1621489160]
+layout_mode = 2
+text = "milliseconds"
+
+[node name="LineEdit Milliseconds" type="LineEdit" parent="HBoxContainer" unique_id=38586383]
+layout_mode = 2
+text = "800"
+
+[node name="Label Seconds" type="Label" parent="HBoxContainer" unique_id=322713718]
+layout_mode = 2
+text = "Seconds"
+
+[node name="LineEdit Seconds" type="LineEdit" parent="HBoxContainer" unique_id=358054552]
+layout_mode = 2
+text = "1"
+
+[node name="Label Minute" type="Label" parent="HBoxContainer" unique_id=80795785]
+layout_mode = 2
+text = "Minute"
+
+[node name="LineEdit Minutes" type="LineEdit" parent="HBoxContainer" unique_id=497527755]
+layout_mode = 2
+text = "0"
+
+[node name="Button Submit Text To Delay" type="Button" parent="HBoxContainer" unique_id=771806718]
+layout_mode = 2
+text = "Relay"
+
+[node name="Label Count Label" type="Label" parent="HBoxContainer" unique_id=122400543]
+layout_mode = 2
+text = "Count:"
+
+[node name="Label Count" type="Label" parent="HBoxContainer" unique_id=1444033456]
+layout_mode = 2
+
+[connection signal="on_text_queue_size_changed_as_string" from="SCmdTextDelayer" to="HBoxContainer/Label Count" method="set_text"]
+[connection signal="on_text_ready_to_be_relayed" from="SCmdTextDelayer" to="SCmdDelayTextWithUiRangeOfTime" method="log_received_text"]
+[connection signal="on_text_ready_to_be_relayed_with_time" from="SCmdTextDelayer" to="SCmdDelayTextWithUiRangeOfTime" method="log_received_text_with_time"]
+[connection signal="on_request_to_delay_text" from="SCmdDelayTextWithUiRangeOfTime" to="SCmdTextDelayer" method="append_text_to_be_delayed_of_milliseconds"]
