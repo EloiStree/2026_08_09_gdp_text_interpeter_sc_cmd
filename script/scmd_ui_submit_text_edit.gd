@@ -13,10 +13,13 @@ signal on_text_edit_any_action(text:String)
 func _ready():
 	if text_edit:
 		text_edit.connect("text_changed", Callable(self, "_on_text_edit_text_changed"))
-		text_edit.connect("text_submitted", Callable(self, "_on_text_edit_submit"))
 		
 	if submit_button:
 		submit_button.connect("pressed", Callable(self, "_on_submit_button_pressed"))
+
+func _on_text_edit_gui_input(event:InputEvent):
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ENTER and not event.shift_pressed:
+		_on_text_edit_submit(text_edit.text)
 	
 func _on_text_edit_text_changed(new_text:String):
 	on_text_edit_text_changed.emit(new_text)

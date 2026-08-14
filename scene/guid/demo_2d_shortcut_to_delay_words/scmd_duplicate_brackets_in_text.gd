@@ -14,9 +14,7 @@ func parse_text_then_emit(text: String) -> void:
 	_last_text_parsed = parsed_text
 	on_parsed_text_emitted.emit(parsed_text)
 
-
-@export var _regex_of_bracket: String = r"\(([^()]+)\)x(\d+)"
-
+var _regex_of_bracket: String = r"\(([^()]+)\)x(\d+)"
 
 ## Collapse all whitespace runs (including newlines) into single spaces.
 func _normalize_whitespace(text: String) -> String:
