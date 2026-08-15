@@ -1,15 +1,16 @@
 [gd_scene format=3 uid="uid://o5ujmnyuqq5y"]
 
-[ext_resource type="Script" uid="uid://dwil6s4natvf5" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/scmd_ui_submit_line_edit.gd" id="1_441cj"]
-[ext_resource type="Script" uid="uid://b2ny4vub2sgib" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_actioneer_for_words/script/core/scmd_shortcut_word_auctioneer.gd" id="1_juxmn"]
-[ext_resource type="Script" uid="uid://bxhiuo107ix6a" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/unstored/scmd_ui_text_append_log.gd" id="2_juxmn"]
-[ext_resource type="Script" uid="uid://ohxds2q6x3n2" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/open_url/scmd_sc_interpreter_open_url_on_keyword.gd" id="4_2dvb1"]
-[ext_resource type="Script" uid="uid://cvg8t0aqgk2ri" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/integer/scmd_sc_interpreter_integer_action.gd" id="5_2dvb1"]
-[ext_resource type="Script" uid="uid://bfvhdcjt1g5ye" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/clipboard/scmd_sc_interpreter_clipboard_storage.gd" id="5_h41ul"]
-[ext_resource type="Script" uid="uid://bmjoj6331yk6a" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/ignore_wait/scmd_sc_interpreter_wait_for_n_milliseconds.gd" id="6_2dvb1"]
-[ext_resource type="Script" uid="uid://bcgdlgdpkc1wp" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/clipboard/scmd_sc_default_clipboard_storage.gd" id="6_e0g04"]
-[ext_resource type="Script" uid="uid://0ebuvi8k7fbd" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/midi/scmd_sc_interpeter_midi.gd" id="7_2dvb1"]
-[ext_resource type="Script" uid="uid://bnh4ggp3el6ai" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/midi/scmd_sc_default_midi_output.gd" id="8_7hf64"]
+[ext_resource type="Script" uid="uid://dwil6s4natvf5" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/scmd_ui_submit_line_edit.gd" id="1_j2ikq"]
+[ext_resource type="Script" uid="uid://bxhiuo107ix6a" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/unstored/scmd_ui_text_append_log.gd" id="2_abk4b"]
+[ext_resource type="Script" uid="uid://b2ny4vub2sgib" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_vbox_actioneer_for_words/script/core/scmd_shortcut_word_auctioneer.gd" id="3_ddsj2"]
+[ext_resource type="Script" uid="uid://ohxds2q6x3n2" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/open_url/scmd_sc_interpreter_open_url_on_keyword.gd" id="4_l4jy4"]
+[ext_resource type="Script" uid="uid://cvg8t0aqgk2ri" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/integer/scmd_sc_interpreter_integer_action.gd" id="5_l3pnx"]
+[ext_resource type="Script" uid="uid://bmjoj6331yk6a" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/ignore_wait/scmd_sc_interpreter_wait_for_n_milliseconds.gd" id="6_wglps"]
+[ext_resource type="Script" uid="uid://0ebuvi8k7fbd" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/midi/scmd_sc_interpeter_midi.gd" id="7_ipj8p"]
+[ext_resource type="Script" uid="uid://bnh4ggp3el6ai" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/midi/scmd_sc_default_midi_output.gd" id="8_2uhyl"]
+[ext_resource type="Script" uid="uid://bfvhdcjt1g5ye" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/clipboard/scmd_sc_interpreter_clipboard_storage.gd" id="9_r5mhr"]
+[ext_resource type="Script" uid="uid://bcgdlgdpkc1wp" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/clipboard/scmd_sc_default_clipboard_storage.gd" id="10_ilp82"]
+[ext_resource type="Script" uid="uid://bmx4ne8gcmd62" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters/tbio_iid/scmd_sc_interpeter_tbio_iid.gd" id="11_abk4b"]
 
 [node name="Demo2dInterpreterScCmd" type="Control" unique_id=355699793]
 layout_mode = 3
@@ -33,7 +34,7 @@ layout_mode = 2
 text = "Submit"
 
 [node name="SCmdUiSubmitLineEdit" type="Node" parent="VBoxContainer/Button" unique_id=75939996 node_paths=PackedStringArray("line_edit", "submit_button")]
-script = ExtResource("1_441cj")
+script = ExtResource("1_j2ikq")
 line_edit = NodePath("../../LineEdit")
 submit_button = NodePath("..")
 metadata/_custom_type_script = "uid://dwil6s4natvf5"
@@ -47,7 +48,7 @@ layout_mode = 2
 text = "-"
 
 [node name="SCmdUiTextAppendLog" type="Node" parent="VBoxContainer/Label Debug Log" unique_id=2005044461 node_paths=PackedStringArray("_labels")]
-script = ExtResource("2_juxmn")
+script = ExtResource("2_abk4b")
 _labels = [NodePath("..")]
 metadata/_custom_type_script = "uid://bxhiuo107ix6a"
 
@@ -62,34 +63,44 @@ text = "-"
 metadata/_edit_use_anchors_ = true
 
 [node name="SCMDShortcutWordAuctioneer" type="Node" parent="." unique_id=2048918711 node_paths=PackedStringArray("_interpreter_bidders")]
-script = ExtResource("1_juxmn")
-_interpreter_bidders = [NodePath("Interpreters/Wait 1000>"), NodePath("Interpreters/Integer Action"), NodePath("Interpreters/Save And Load Clipboard"), NodePath("Interpreters/Midi UDP Out"), NodePath("Interpreters/Open Url")]
+script = ExtResource("3_ddsj2")
+_interpreter_bidders = [NodePath("Interpreters/Wait 1000>"), NodePath("Interpreters/Integer Action"), NodePath("Interpreters/To Doing/TBIO ~>"), NodePath("Interpreters/Save And Load Clipboard"), NodePath("Interpreters/Midi UDP Out"), NodePath("Interpreters/Open Url")]
 metadata/_custom_type_script = "uid://b2ny4vub2sgib"
 
 [node name="Interpreters" type="Node" parent="SCMDShortcutWordAuctioneer" unique_id=289497450]
 
 [node name="Open Url" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=371847025]
-script = ExtResource("4_2dvb1")
+script = ExtResource("4_l4jy4")
 
 [node name="Integer Action" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=238685304]
-script = ExtResource("5_2dvb1")
+script = ExtResource("5_l3pnx")
 
 [node name="Wait 1000>" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=1545822692]
-script = ExtResource("6_2dvb1")
+script = ExtResource("6_wglps")
 
 [node name="Midi UDP Out" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=784872356]
-script = ExtResource("7_2dvb1")
+script = ExtResource("7_ipj8p")
 metadata/_custom_type_script = "uid://0ebuvi8k7fbd"
 
 [node name="Midi Udp Localhost" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters/Midi UDP Out" unique_id=915070410]
-script = ExtResource("8_7hf64")
+script = ExtResource("8_2uhyl")
 metadata/_custom_type_script = "uid://bnh4ggp3el6ai"
 
 [node name="Save And Load Clipboard" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=621184770]
-script = ExtResource("5_h41ul")
+script = ExtResource("9_r5mhr")
 
 [node name="Clipboard Storage" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters/Save And Load Clipboard" unique_id=603213341]
-script = ExtResource("6_e0g04")
+script = ExtResource("10_ilp82")
+
+[node name="To Do" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=1057255302]
+
+[node name="To Doing" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=1496117931]
+
+[node name="TBIO ~>" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters/To Doing" unique_id=2099038635]
+script = ExtResource("11_abk4b")
+metadata/_custom_type_script = "uid://bmx4ne8gcmd62"
+
+[node name="To Done" type="Node" parent="SCMDShortcutWordAuctioneer/Interpreters" unique_id=342364590]
 
 [connection signal="on_submit_button_pressed" from="VBoxContainer/Button/SCmdUiSubmitLineEdit" to="SCMDShortcutWordAuctioneer" method="push_in_shortcut_text"]
 [connection signal="on_integer_found_as_string" from="SCMDShortcutWordAuctioneer/Interpreters/Integer Action" to="VBoxContainer/Label Integer Found" method="set_text"]
