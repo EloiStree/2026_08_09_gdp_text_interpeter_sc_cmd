@@ -190,6 +190,7 @@ func is_able_to_interpret_given_word(word: String) -> bool:
 	return word.length() > 2 and word.begins_with("~") and word.ends_with(">")
 	
 func interpret_given_word(word: String) -> void:
+	print("HERE", word)
 	var is_valid_integer = is_able_to_interpret_given_word(word)
 	if not is_valid_integer:
 		return 

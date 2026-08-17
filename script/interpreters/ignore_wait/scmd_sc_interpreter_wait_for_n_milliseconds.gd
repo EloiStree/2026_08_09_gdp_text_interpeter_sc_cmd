@@ -11,7 +11,7 @@ func is_char_digit(c: String) -> bool:
 		return false
 
 func is_able_to_interpret_given_word(word: String) -> bool:
-	if not word.ends_with(">"):
+	if not word.ends_with(">") or word.begins_with("⌛"): 
 		return false
 	for c in word.substr(0, word.length() - 1):
 		if not is_char_digit(c):

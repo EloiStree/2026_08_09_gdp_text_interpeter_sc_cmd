@@ -14,6 +14,7 @@ signal on_word_end_processing(word: String)
 @export var _method_name_interpret_given_word: String = "interpret_given_word"
 @export var _leave_when_found_first_interpreter: bool = true
 
+@export var _last_received:String
 func push_in_shortcut_text(text: String) -> void:
 	for line in text.split("\n"):
 		_push_in_line(line)
@@ -30,6 +31,7 @@ func _push_in_line(line: String) -> void:
 		_process_word_to_bidders(word)
 
 func _process_word_to_bidders(word: String) -> void:
+	_last_received=word
 	on_word_start_processing.emit(word)
 	for bidder in _interpreter_bidders:
 		if bidder == null:
