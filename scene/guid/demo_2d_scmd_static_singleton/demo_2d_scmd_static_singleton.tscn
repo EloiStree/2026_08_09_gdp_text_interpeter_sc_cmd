@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dwil6s4natvf5" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/scmd_ui_submit_line_edit.gd" id="1_xdych"]
 [ext_resource type="Script" uid="uid://briys5vafrqt" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_scmd_static_singleton/scmd_push_shortcut_to_static_singleton.gd" id="2_u478i"]
 [ext_resource type="Script" uid="uid://dcshwh1n4qspt" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_scmd_static_singleton/scmd_listen_to_push_shortcut_to_static_singleton.gd" id="3_b6y5o"]
+[ext_resource type="Script" uid="uid://cusc6quwej757" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_scmd_static_singleton/scmd_push_command_line_to_static_singleton.gd" id="4_b6y5o"]
+[ext_resource type="Script" uid="uid://cgetyfyk4dgns" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_scmd_static_singleton/scmd_listen_to_push_command_line_to_static_singleton.gd" id="5_m3vuw"]
 
 [node name="Demo2dScmdStaticSingleton" type="Control" unique_id=331065984]
 layout_mode = 3
@@ -39,6 +41,10 @@ metadata/_custom_type_script = "uid://dwil6s4natvf5"
 script = ExtResource("2_u478i")
 metadata/_custom_type_script = "uid://briys5vafrqt"
 
+[node name="Label Pushed" type="Label" parent="VBoxContainer" unique_id=1799190340]
+layout_mode = 2
+text = "Received From Static"
+
 [node name="Label Received" type="Label" parent="VBoxContainer" unique_id=205067482]
 layout_mode = 2
 text = "Received From Static"
@@ -50,5 +56,48 @@ layout_mode = 2
 script = ExtResource("3_b6y5o")
 metadata/_custom_type_script = "uid://dcshwh1n4qspt"
 
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1316572233]
+layout_mode = 2
+text = "--------"
+
+[node name="Label Send2" type="Label" parent="VBoxContainer" unique_id=3277199]
+layout_mode = 2
+text = "Push Command Line To Static"
+
+[node name="LineEdit3" type="LineEdit" parent="VBoxContainer" unique_id=1120956286]
+layout_mode = 2
+text = "cmd:log Hello World"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1143387724]
+layout_mode = 2
+text = "Push to Static"
+
+[node name="SCmdUiSubmitLineEdit" type="Node" parent="VBoxContainer/Button2" unique_id=1364251147 node_paths=PackedStringArray("line_edit", "submit_button")]
+script = ExtResource("1_xdych")
+line_edit = NodePath("../../LineEdit3")
+submit_button = NodePath("..")
+metadata/_custom_type_script = "uid://dwil6s4natvf5"
+
+[node name="SCmdPushCommandLineToStaticSingleton" type="Node" parent="VBoxContainer/Button2" unique_id=2051402589]
+script = ExtResource("4_b6y5o")
+
+[node name="Label Pushed2" type="Label" parent="VBoxContainer" unique_id=541585319]
+layout_mode = 2
+text = "Received From Static"
+
+[node name="Label Received2" type="Label" parent="VBoxContainer" unique_id=1294328907]
+layout_mode = 2
+text = "Received From Static"
+
+[node name="LineEdit4" type="LineEdit" parent="VBoxContainer" unique_id=536087382]
+layout_mode = 2
+
+[node name="SCmdListenToPushCommandLineToStaticSingleton" type="Node" parent="VBoxContainer/LineEdit4" unique_id=1849071783]
+script = ExtResource("5_m3vuw")
+
 [connection signal="on_submit_button_pressed" from="VBoxContainer/Button/SCmdUiSubmitLineEdit" to="VBoxContainer/Button/SCmdPushShortcutToStaticSingleton" method="push_shortcut_to_static_singleton"]
+[connection signal="on_shortcut_to_interpret" from="VBoxContainer/Button/SCmdPushShortcutToStaticSingleton" to="VBoxContainer/Label Pushed" method="set_text"]
 [connection signal="on_shortcut_to_interpret" from="VBoxContainer/LineEdit2/SCmdListenToPushShortcutToStaticSingleton" to="VBoxContainer/LineEdit2" method="set_text"]
+[connection signal="on_submit_button_pressed" from="VBoxContainer/Button2/SCmdUiSubmitLineEdit" to="VBoxContainer/Button2/SCmdPushCommandLineToStaticSingleton" method="push_command_line_to_static_singleton"]
+[connection signal="on_command_line_to_interpret" from="VBoxContainer/Button2/SCmdPushCommandLineToStaticSingleton" to="VBoxContainer/Label Pushed2" method="set_text"]
+[connection signal="on_command_line_to_interpret" from="VBoxContainer/LineEdit4/SCmdListenToPushCommandLineToStaticSingleton" to="VBoxContainer/LineEdit4" method="set_text"]

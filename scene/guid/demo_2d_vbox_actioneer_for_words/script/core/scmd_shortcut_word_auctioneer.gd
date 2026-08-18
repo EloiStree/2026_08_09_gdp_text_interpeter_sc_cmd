@@ -3,7 +3,8 @@
 class_name SCmdShortcutWordAuctioneer
 extends Node
 
-
+signal on_last_text_received(text:String)
+signal on_last_word_processed(text:String)
 signal on_word_start_processing(word: String)
 signal on_word_found_interpreter(word: String, interpreter_node: Node)
 signal on_word_not_found_interpreter(word: String)
@@ -16,6 +17,7 @@ signal on_word_end_processing(word: String)
 
 @export var _last_received:String
 func push_in_shortcut_text(text: String) -> void:
+	on_last_text_received.emit(text)
 	for line in text.split("\n"):
 		_push_in_line(line)
 
@@ -31,6 +33,7 @@ func _push_in_line(line: String) -> void:
 		_process_word_to_bidders(word)
 
 func _process_word_to_bidders(word: String) -> void:
+	on_last_word_processed.emit(word)
 	_last_received=word
 	on_word_start_processing.emit(word)
 	for bidder in _interpreter_bidders:

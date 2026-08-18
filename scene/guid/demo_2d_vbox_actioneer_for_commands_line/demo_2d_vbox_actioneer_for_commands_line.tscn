@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://de1uknxasmrhv"]
+
+[ext_resource type="Script" uid="uid://upwr546drop3" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/scmd_ui_submit_text_edit.gd" id="1_njvtk"]
+[ext_resource type="Script" uid="uid://bludagc52ldcv" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/scene/guid/demo_2d_actioneer_for_commands_line/script/scmd_command_line_auctioneer.gd" id="1_wqru2"]
+[ext_resource type="Script" uid="uid://bf1pvarstcheb" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters_cmd/log/scmd_cmd_interpreter_print_log.gd" id="2_d340v"]
+[ext_resource type="Script" uid="uid://bats724ddubpu" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters_cmd/in_delayer/scmd_cmd_interpreter_in_time_delayer.gd" id="3_h7sl3"]
+[ext_resource type="Script" uid="uid://cku7rckwwwh4i" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/unstored/scmd_text_delayer_.gd" id="4_h7sl3"]
+[ext_resource type="Script" uid="uid://37ph7dwa7ih2" path="res://addons/2026_08_09_gdp_text_interpeter_sc_cmd/script/interpreters_cmd/short_cut_relayer/scmd_cmd_interpreter_relay_to_shortcut_actioneer.gd" id="4_ryg2p"]
+
+[node name="Demo2dVboxActioneerForCommandsLine" type="Control" unique_id=2007781394]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SCMDCommandLineAuctioneer" type="Node" parent="." unique_id=1515981577 node_paths=PackedStringArray("_interpreter_bidders")]
+script = ExtResource("1_wqru2")
+_interpreter_bidders = [NodePath("Interpreter/SCmdCmdInterpreterInTimeDelayer"), NodePath("Interpreter/SCmdCmdInterpreterRelayToShortcutActioneer"), NodePath("Interpreter/SCmdCmdInterpreterPrintLog")]
+metadata/_custom_type_script = "uid://bludagc52ldcv"
+
+[node name="Interpreter" type="Node" parent="SCMDCommandLineAuctioneer" unique_id=1912031246]
+
+[node name="SCmdCmdInterpreterPrintLog" type="Node" parent="SCMDCommandLineAuctioneer/Interpreter" unique_id=271043595 node_paths=PackedStringArray("_labels_for_log", "_labels_for_log_warning", "_labels_for_log_error")]
+script = ExtResource("2_d340v")
+_labels_for_log = [NodePath("../../../VBoxContainer/Label Title Log Print")]
+_labels_for_log_warning = [NodePath("../../../VBoxContainer/Label Title Log Warning")]
+_labels_for_log_error = [NodePath("../../../VBoxContainer/Label Title Log Error")]
+metadata/_custom_type_script = "uid://bf1pvarstcheb"
+
+[node name="SCmdCmdInterpreterInTimeDelayer" type="Node" parent="SCMDCommandLineAuctioneer/Interpreter" unique_id=1873705657]
+script = ExtResource("3_h7sl3")
+metadata/_custom_type_script = "uid://bats724ddubpu"
+
+[node name="SCmdTextDelayer" type="Node" parent="SCMDCommandLineAuctioneer/Interpreter/SCmdCmdInterpreterInTimeDelayer" unique_id=1303075301]
+script = ExtResource("4_h7sl3")
+metadata/_custom_type_script = "uid://cku7rckwwwh4i"
+
+[node name="SCmdCmdInterpreterRelayToShortcutActioneer" type="Node" parent="SCMDCommandLineAuctioneer/Interpreter" unique_id=1081530828]
+script = ExtResource("4_ryg2p")
+metadata/_custom_type_script = "uid://37ph7dwa7ih2"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1682820401]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="VBoxContainer" unique_id=742580783]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "in 500:sc:Hello world
+in 2000:sc: Goodbye world
+log Testing log classic
+log warning Testing Warning Log
+log error Testing Error Log
+print Testing the print console
+print warning Testing the print warning
+print error Testing the print error
+
+
+"
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=979446278]
+layout_mode = 2
+text = "Submit"
+
+[node name="SCmdUiSubmitTextEdit" type="Node" parent="VBoxContainer/Button" unique_id=1364895574 node_paths=PackedStringArray("text_edit", "submit_button")]
+script = ExtResource("1_njvtk")
+text_edit = NodePath("../../CodeEdit")
+submit_button = NodePath("..")
+metadata/_custom_type_script = "uid://upwr546drop3"
+
+[node name="Label Title Shortcut" type="Label" parent="VBoxContainer" unique_id=1307189205]
+layout_mode = 2
+text = "Shortcut:"
+
+[node name="Label Shortcut" type="Label" parent="VBoxContainer" unique_id=722584874]
+layout_mode = 2
+
+[node name="Label Log" type="Label" parent="VBoxContainer" unique_id=2072795918]
+layout_mode = 2
+text = "Log:"
+
+[node name="Label Title Log Print" type="Label" parent="VBoxContainer" unique_id=1584751649]
+layout_mode = 2
+
+[node name="Label Log Warning" type="Label" parent="VBoxContainer" unique_id=1081145078]
+layout_mode = 2
+text = "Log Warning"
+
+[node name="Label Title Log Warning" type="Label" parent="VBoxContainer" unique_id=1190888258]
+layout_mode = 2
+
+[node name="Label Log Error" type="Label" parent="VBoxContainer" unique_id=556095480]
+layout_mode = 2
+text = "Log Error:"
+
+[node name="Label Title Log Error" type="Label" parent="VBoxContainer" unique_id=871335143]
+layout_mode = 2
+
+[connection signal="on_command_line_to_delay_found" from="SCMDCommandLineAuctioneer/Interpreter/SCmdCmdInterpreterInTimeDelayer" to="SCMDCommandLineAuctioneer/Interpreter/SCmdCmdInterpreterInTimeDelayer/SCmdTextDelayer" method="append_text_to_be_delayed_of_milliseconds"]
+[connection signal="on_text_ready_to_be_relayed" from="SCMDCommandLineAuctioneer/Interpreter/SCmdCmdInterpreterInTimeDelayer/SCmdTextDelayer" to="SCMDCommandLineAuctioneer" method="push_in_command_line_text"]
+[connection signal="on_shortcut_line_to_interpret_found" from="SCMDCommandLineAuctioneer/Interpreter/SCmdCmdInterpreterRelayToShortcutActioneer" to="VBoxContainer/Label Shortcut" method="set_text"]
+[connection signal="on_submit_button_pressed" from="VBoxContainer/Button/SCmdUiSubmitTextEdit" to="SCMDCommandLineAuctioneer" method="push_in_command_line_text"]

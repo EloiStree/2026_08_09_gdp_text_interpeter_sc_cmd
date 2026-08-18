@@ -41,14 +41,6 @@ func _add_waiting_text( holder:SCmdWaitingTextToRelay):
 	
 
 	
-	
-
-func append_text_to_be_delayed_at_milliseconds(milliseconds: int, text: String) -> void:
-	var waiting_text = SCmdWaitingTextToRelay.new()
-	waiting_text._milliseconds_on_device_when_received = get_time_in_milliseconds()
-	waiting_text._milliseconds_on_device_when_to_be_relayed = milliseconds
-	waiting_text._text_to_relay = text
-	_add_waiting_text(waiting_text)
 
 func append_text_to_be_delayed_of_milliseconds(delay_time_in_milliseconds: int, text: String) -> void:
 	var waiting_text = SCmdWaitingTextToRelay.new()
