@@ -6,7 +6,7 @@ extends Node
 
 
 func is_able_to_interpret_given_word(word: String) -> bool:
-    return false
+	return false
 
 func interpret_given_word(word: String) -> void:
-    pass
+	pass

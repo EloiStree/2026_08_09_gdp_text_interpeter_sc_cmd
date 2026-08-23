@@ -5,7 +5,7 @@ extends SCmdCmdInterpreterAbstractBidderNode
 signal on_command_line_to_delay_found(milliseconds_to_delay: int,text_to_interpret: String)
 
 func is_able_to_interpret_given_command_line(line: String) -> bool:
-	return line and line.strip_edges().begins_with("in ") and line.find(":") > 3
+	return line and line.strip_edges().to_lower().begins_with("in ") and line.find(":") > 3
 
 
 const _DIGITS: Array[String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
