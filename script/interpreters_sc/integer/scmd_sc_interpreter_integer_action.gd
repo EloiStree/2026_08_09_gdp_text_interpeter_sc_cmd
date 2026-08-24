@@ -13,6 +13,7 @@ func is_char_digit(c: String) -> bool:
 		return false
 
 func is_able_to_interpret_given_word(word: String) -> bool:
+	
 	for c in word:
 		if not is_char_digit(c):
 			return false
