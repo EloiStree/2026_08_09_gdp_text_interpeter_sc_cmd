@@ -17,7 +17,7 @@ func interpret_given_word(word: String) -> void:
 	if not is_able_to_interpret_given_word(word):
 		return
 
-	var text_after: String = word.substr(2)
+	var text_after: String = word.substr(2).strip_edges()
 
 	if len(text_after) == 1:
 		on_request_of_one_char_command.emit(text_after.unicode_at(0))
